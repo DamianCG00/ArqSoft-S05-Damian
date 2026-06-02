@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Citas_app.Models.Cita>
+
+@{
+    ViewData["Title"] = "Citas por Paciente";
+}
+
+<h2>Historial de Citas del Paciente</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">No se encontraron citas para este paciente.</div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Cita</th>
+                <th>Médico</th>
+                <th>Fecha y Hora</th>
+                <th>Motivo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>Dr(a). @ViewBag.NombresMedicos[item.MedicoId]</td>
+                    <td>@item.Fecha a las @item.Hora</td>
+                    <td>@item.Motivo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div>
+    <a asp-action="Index" asp-controller="Paciente" class="btn btn-secondary">Volver a Pacientes</a>
+</div>

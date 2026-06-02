@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Citas_app.Models.Medico>
+
+@{
+    ViewData["Title"] = "Médicos";
+}
+
+<h2>Personal Médico</h2>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Especialidad (Ref)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>Dr(a). @item.Nombre</td>
+                <td>@item.Especialidad</td>
+                <td>
+                    <a asp-action="Detalle" asp-route-id="@item.Id" class="btn btn-info btn-sm">Ver Perfil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

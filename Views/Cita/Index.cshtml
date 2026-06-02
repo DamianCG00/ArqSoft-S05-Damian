@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Citas_app.Models.Cita>
+
+@{
+    ViewData["Title"] = "Agenda de Citas";
+}
+
+<h2>Agenda Completa de Citas</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha y Hora</th>
+            <th>Paciente</th>
+            <th>Médico</th>
+            <th>Motivo (Ref)</th>
+            <th>Estado (Ref)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Fecha a las @item.Hora</td>
+                <td>@ViewBag.NombresPacientes[item.PacienteId]</td>
+                <td>Dr(a). @ViewBag.NombresMedicos[item.MedicoId]</td>
+                <td>@item.Motivo</td>
+                <td>@item.Estado</td>
+            </tr>
+        }
+    </tbody>
+</table>
