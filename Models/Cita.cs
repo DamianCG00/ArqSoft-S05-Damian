@@ -2,22 +2,14 @@
 {
     public class Cita
     {
-
         public int Id { get; set; }
-
-        public string? PacienteId { get; set; }
-
+        public string PacienteId { get; set; }
         public int MedicoId { get; set; }
 
-        public int Fecha { get; set; }
-
-        public int Hora { get; set; }
-
-        public int Motivo { get; set; }
-
-        public int Estado { get; set; } 
-
-
-
+        // Convertimos a string para leer el JSON sin problemas
+        public string Fecha { get; set; }
+        public string Hora { get; set; }
+        public string Motivo { get; set; }
+        public string Estado { get; set; }
     }
 }

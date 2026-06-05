@@ -1,31 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Citas_app.Models;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 
 namespace Citas_app.Controllers
 {
     public class CitaController : Controller
     {
-        
-        private static List<Cita> citas = new List<Cita>
+        private List<T> LeerDatos<T>(string nombreArchivo)
         {
+            var ruta = Path.Combine(Directory.GetCurrentDirectory(), "data", nombreArchivo);
+            if (!System.IO.File.Exists(ruta)) return new List<T>();
+            var json = System.IO.File.ReadAllText(ruta);
+            return JsonSerializer.Deserialize<List<T>>(json) ?? new List<T>();
+        }
+
+        private void CargarNombresEnViewBag()
+        {
+            var pacientes = LeerDatos<Paciente>("pacientes.json");
+            var medicos = LeerDatos<Medico>("medicos.json");
+
             
-            new Cita { Id = 1, PacienteId = "1", MedicoId = 1, Fecha = 20260615, Hora = 1030, Motivo = 1, Estado = 1 },
-            new Cita { Id = 2, PacienteId = "1", MedicoId = 2, Fecha = 20260620, Hora = 1200, Motivo = 2, Estado = 1 },
-            new Cita { Id = 3, PacienteId = "2", MedicoId = 1, Fecha = 20260618, Hora = 1645, Motivo = 3, Estado = 2 }
-        };
+            ViewBag.NombresPacientes = pacientes.ToDictionary(p => p.Id.ToString(), p => p.Nombre + " " + p.Apellido);
+
+            
+            ViewBag.NombresMedicos = medicos.ToDictionary(m => m.Id, m => m.Nombre + " " + m.Apellido);
+        }
 
         public IActionResult Index()
         {
+            CargarNombresEnViewBag();
+            var citas = LeerDatos<Cita>("citas.json");
             return View(citas);
         }
 
-        
-        public IActionResult PorPaciente(string pacienteId)
+        public IActionResult PorPaciente(int pacienteId)
         {
-            var citasDelPaciente = citas.Where(c => c.PacienteId == pacienteId).ToList();
-
+            CargarNombresEnViewBag();
+            
+            var citasDelPaciente = LeerDatos<Cita>("citas.json").Where(c => c.PacienteId == pacienteId.ToString()).ToList();
             return View(citasDelPaciente);
         }
     }

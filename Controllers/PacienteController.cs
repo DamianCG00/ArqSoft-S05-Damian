@@ -1,33 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Citas_app.Models;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 
 namespace Citas_app.Controllers
 {
     public class PacienteController : Controller
     {
-        // Datos simulados adaptados a tus tipos de datos actuales (int para Apellido, Email, etc.)
-        private static List<Paciente> pacientes = new List<Paciente>
+        // Método privado para leer el archivo JSON
+        private List<Paciente> ObtenerPacientes()
         {
-            new Paciente { Id = 1, Nombre = "Ana", Apellido = 1, Email = 1, Telefono = 9991234 },
-            new Paciente { Id = 2, Nombre = "Carlos", Apellido = 2, Email = 2, Telefono = 9997654 }
-        };
+            var ruta = Path.Combine(Directory.GetCurrentDirectory(), "data", "pacientes.json");
+            if (!System.IO.File.Exists(ruta)) return new List<Paciente>();
+
+            var json = System.IO.File.ReadAllText(ruta);
+            return JsonSerializer.Deserialize<List<Paciente>>(json) ?? new List<Paciente>();
+        }
 
         public IActionResult Index()
         {
-            return View(pacientes);
+            return View(ObtenerPacientes());
         }
 
         public IActionResult Detalle(int id)
         {
-            var paciente = pacientes.FirstOrDefault(p => p.Id == id);
-
-            if (paciente == null)
-            {
-                return NotFound();
-            }
-
+            var paciente = ObtenerPacientes().FirstOrDefault(p => p.Id == id);
+            if (paciente == null) return NotFound();
             return View(paciente);
         }
     }
