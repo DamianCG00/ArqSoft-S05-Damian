@@ -1,0 +1,53 @@
+﻿@model Citas_app.Models.Cita
+
+@{
+    ViewData["Title"] = "Agendar Nueva Cita";
+}
+
+<h2>Agendar Nueva Cita</h2>
+
+<form asp-action="Crear" method="post" style="max-width: 400px; margin-top: 20px;">
+
+    <div style="margin-bottom: 10px;">
+        <label>Paciente:</label><br />
+        <select name="PacienteId" required style="width: 100%; padding: 5px;">
+            <option value="">-- Seleccione un Paciente --</option>
+            @foreach (var p in ViewBag.Pacientes)
+            {
+                <option value="@p.Id">@p.Nombre @p.Apellido</option>
+            }
+        </select>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label>Médico:</label><br />
+        <select name="MedicoId" required style="width: 100%; padding: 5px;">
+            <option value="">-- Seleccione un Médico --</option>
+            @foreach (var m in ViewBag.Medicos)
+            {
+                <option value="@m.Id">Dr(a). @m.Nombre @m.Apellido</option>
+            }
+        </select>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label>Fecha:</label><br />
+        <input type="date" name="Fecha" required style="width: 100%; padding: 5px;" />
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label>Hora:</label><br />
+        <input type="time" name="Hora" required style="width: 100%; padding: 5px;" />
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label>Motivo de la consulta:</label><br />
+        <input type="text" name="Motivo" required style="width: 100%; padding: 5px;" />
+    </div>
+
+    <button type="submit" style="padding: 8px 15px; background-color: #007bff; color: white; border: none; cursor: pointer;">
+        Guardar Cita
+    </button>
+
+    <a asp-action="Index" style="margin-left: 15px; color: red; text-decoration: none;">Cancelar</a>
+</form>
