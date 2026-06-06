@@ -1,4 +1,3 @@
-# Arquitectura de Software - Actividad #16 - Vistas Arquitectónicas
 
 ##  Información del Estudiante
 
@@ -84,3 +83,42 @@ CitasApp/
 ├── Program.cs
 ├── appsettings.json
 └── README.md
+```
+
+---
+## Declaración de IA
+En esta actividad use la IA (Gemmini) para poder entender de mejor manera el funcionamiento de los codigos, el uso correcto en as diapositivas,
+e incluso la generación del mismo
+
+Pese a que su suo fue continuo esto fue con la finalida de que pueda tener un mejor entendimiento de como es que funcionan todos estos codigos,
+con la finalida de poder comprender su funicionamiento le eh pedido que genre fragmentos de IA para poder ver en accion como es que funcionan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
