@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Citas_app.Models.Cita>
+﻿@model IEnumerable<CitasApp.Models.Cita>
 
 @{
     ViewData["Title"] = "Agenda de Citas";
@@ -25,8 +25,16 @@
         {
             <tr>
                 <td>@item.Fecha a las @item.Hora</td>
-                <td>@ViewBag.NombresPacientes[item.PacienteId]</td>
-                <td>Dr(a). @ViewBag.NombresMedicos[item.MedicoId]</td>
+                <td>
+                    @(ViewBag.NombresPacientes != null && ViewBag.NombresPacientes.ContainsKey(item.PacienteId.ToString()) 
+                        ? ViewBag.NombresPacientes[item.PacienteId.ToString()] 
+                        : "Paciente Desconocido")
+                </td>
+                <td>
+                    @(ViewBag.NombresMedicos != null && ViewBag.NombresMedicos.ContainsKey(item.MedicoId.ToString()) 
+                        ? ViewBag.NombresMedicos[item.MedicoId.ToString()] 
+                        : "Médico Desconocido")
+                </td>
                 <td>@item.Motivo</td>
                 <td>@item.Estado</td>
             </tr>

@@ -11,8 +11,4 @@
     <ProjectReference Include="..\CitasApp.Infrestructure\CitasApp.Infrestructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

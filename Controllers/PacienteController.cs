@@ -1,34 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Citas_app.Models;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
+using CitasApp.Models;
+using CitasApp.Interfaces;
 
-namespace Citas_app.Controllers
+namespace CitasApp.Controllers
 {
     public class PacienteController : Controller
     {
-        // Método privado para leer el archivo JSON
-        private List<Paciente> ObtenerPacientes()
-        {
-            var ruta = Path.Combine(Directory.GetCurrentDirectory(), "data", "pacientes.json");
-            if (!System.IO.File.Exists(ruta)) return new List<Paciente>();
+        private readonly IPacienteRepository _repo;
 
-            var json = System.IO.File.ReadAllText(ruta);
-            return JsonSerializer.Deserialize<List<Paciente>>(json) ?? new List<Paciente>();
+        public PacienteController(IPacienteRepository repo)
+        {
+            _repo = repo;
         }
 
         public IActionResult Index()
         {
-            return View(ObtenerPacientes());
+            return View(_repo.ObtenerTodos());
         }
 
         public IActionResult Detalle(int id)
         {
-            var paciente = ObtenerPacientes().FirstOrDefault(p => p.Id == id);
-            if (paciente == null) return NotFound();
-            return View(paciente);
+            var paciente = _repo.ObtenerPorId(id);
+
+            return paciente == null
+                ? NotFound()
+                : View(paciente);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
     }
 }
