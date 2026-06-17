@@ -25,7 +25,9 @@ var sqlitePath = Path.Combine(dataFolder, "citasapp.db");
 
 // ── 2. Elige tus Adapters ─────────────────────────────────────────────────────
 // Descomenta el bloque que quieras y comenta los otros dos.
-// ¡Las interfaces (Ports) no cambian!
+// ¡Las interfaces (Ports) no cambian! 
+
+/*PASO PARA COPIA DESEGURIDAD*/
 
 // ▶ Bloque A — JSON (como estaba antes)
 
