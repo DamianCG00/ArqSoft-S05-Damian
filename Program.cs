@@ -4,9 +4,9 @@
 // Domain y Application NO se tocan — solo cambia este archivo.
 // ─────────────────────────────────────────────────────────────────────────────
 
-
-using CitasApp.Interfaces;
+using CitasApp.Aplication.Services;
 using CitasApp.Infrastructure.Repositories;
+using CitasApp.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,9 +35,11 @@ builder.Services.AddSingleton<ICitaRepository,     JsonCitaRepository>();
 */
 
 // ▶ Bloque B — CSV  ← activo ahora
+
 builder.Services.AddSingleton<IPacienteRepository>(_ => new CsvPacienteRepository(csvPacientes));
 builder.Services.AddSingleton<IMedicoRepository>(_ => new CsvMedicoRepository(csvMedicos));
 builder.Services.AddSingleton<ICitaRepository>(_ => new CsvCitaRepository(csvCitas));
+
 
 // ▶ Bloque C — SQLite
 /*
@@ -48,11 +50,9 @@ builder.Services.AddSingleton<ICitaRepository>    (_ => new SqliteCitaRepository
 
 
 // ── 3. Servicios de aplicación (no cambian con el Adapter) ───────────────────
-/*
 builder.Services.AddScoped<PacienteService>();
 builder.Services.AddScoped<MedicoService>();
 builder.Services.AddScoped<CitaService>();
-*/
 
 // ── 4. MVC ────────────────────────────────────────────────────────────────────
 builder.Services.AddControllersWithViews();
