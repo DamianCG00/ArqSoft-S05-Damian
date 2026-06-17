@@ -1,1 +1,12 @@
 Id,Nombre,Apellido,Especialidad,NumeroLicencia
+1,Juan,Perez,Cardiología,MED-001
+2,Ana,Garcia,Pediatría,MED-002
+3,Carlos,Lopez,Dermatología,MED-003
+4,María,Hernandez,Ginecología,MED-004
+5,Luis,Martinez,Neurología,MED-005
+6,Sofia,Ramirez,Oncología,MED-006
+7,Diego,Torres,Traumatología,MED-007
+8,Laura,Flores,Medicina General,MED-008
+9,Jorge,Castillo,Oftalmología,MED-009
+10,Patricia,Mendoza,Psiquiatría,MED-010
+11,Jorge Javier Pedrozo Romero,,Desarrollo de Software,PROF-001
