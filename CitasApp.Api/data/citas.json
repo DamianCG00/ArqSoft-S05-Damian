@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "PacienteId": 1,
+    "MedicoId": 1,
+    "Fecha": "2026-06-01",
+    "Hora": "09:00:00",
+    "Motivo": "Consulta general",
+    "Estado": "Confirmada"
+  },
+  {
+    "Id": 2,
+    "PacienteId": 2,
+    "MedicoId": 2,
+    "Fecha": "2026-06-01",
+    "Hora": "10:00:00",
+    "Motivo": "Revisi\u00F3n de resultados",
+    "Estado": "Pendiente"
+  },
+  {
+    "Id": 3,
+    "PacienteId": 3,
+    "MedicoId": 1,
+    "Fecha": "2026-06-03",
+    "Hora": "11:00:00",
+    "Motivo": "Primera consulta",
+    "Estado": "Pendiente"
+  },
+  {
+    "Id": 4,
+    "PacienteId": 3,
+    "MedicoId": 2,
+    "Fecha": "2020-02-02",
+    "Hora": "06:56",
+    "Motivo": "Me pica el ri\u00F1on ",
+    "Estado": "Pendiente"
+  }
+]
